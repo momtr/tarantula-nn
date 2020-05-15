@@ -25,7 +25,7 @@ public class FullyConnectedLayer extends Layer {
         Matrix gradients = output.clone();
         gradients.mapDerivative(super.getActivationFunction());
         gradients = Matrix.multiplyDirectional(gradients, error);
-        gradients.multiply(learningRate);
+        gradients.multiply(2 * learningRate);
         Matrix input_t = Matrix.transpose(input);
         Matrix weight_deltas = Matrix.multiply(gradients, input_t);
 

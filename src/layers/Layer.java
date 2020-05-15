@@ -45,6 +45,4 @@ public abstract class Layer {
     public abstract Matrix feedForward(Matrix input);
     public abstract Matrix train(Matrix error, Matrix input, Matrix output, double learningRate);
 
-
-
 }

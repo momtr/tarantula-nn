@@ -25,7 +25,6 @@ public class NeuralNetwork {
     public Matrix feedForward(Matrix input) {
         for(Layer l : this.layers) {
             input = l.feedForward(input);
-            // System.out.println("next layer");
         }
         return input;
     }
@@ -36,13 +35,12 @@ public class NeuralNetwork {
         for(Layer l : this.layers) {
             input = l.feedForward(input);
             history.add(input);
-            // System.out.println("next layer");
         }
         return history;
     }
 
     public void train(Dataset data) {
-        this.train(data, 1, 0.05);
+        this.train(data, 100000, 0.2);
     }
 
     public void train(Dataset data, int epochs, double lr) {
@@ -57,12 +55,6 @@ public class NeuralNetwork {
                 // (2) calc the error
                 Matrix modelY = history.get(history.size() - 1);
                 Matrix error = Matrix.subtract(y, modelY);
-
-                //System.out.println("model y: " + modelY.toString());
-                //System.out.println("real y: " + y.toString());
-                //System.out.println("Error: " + error.toString());
-                //System.out.println("----------\n\n");
-
 
                 // (3) gradient descent and backprop
                 for(int i = this.layers.size() - 1; i >= 0; i--) {

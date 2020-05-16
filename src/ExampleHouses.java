@@ -21,15 +21,14 @@ public class ExampleHouses {
 
         // build network
         NeuralNetwork nn = new NeuralNetwork();
-        nn.addLayer(new FullyConnectedLayer(2, 6, new Sigmoid()));
-        nn.addLayer(new FullyConnectedLayer(6, 3, new Tanh()));
+        nn.addLayer(new FullyConnectedLayer(2, 3, new Sigmoid()));
         nn.addLayer(new FullyConnectedLayer(3, 1, new Tanh()));
 
         // train network
         nn.train(dataset, 100, 0.1);
 
         // test it
-        Vector input = Vector.fromArray(new double[]{ 18.45, 3358.0 });
+        Vector input = Vector.fromArray(new double[]{ 0, 0 });
         Matrix normalized = dataset.normalizeMatrix(input);
         System.out.println("Normalized: " + normalized.toString());
         Matrix prediction = nn.feedForward(normalized);

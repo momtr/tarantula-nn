@@ -10,8 +10,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
         // build network
         NeuralNetwork nn = new NeuralNetwork();
-        nn.addLayer(new FullyConnectedLayer(2, 3, new Sigmoid()));
-        nn.addLayer(new FullyConnectedLayer(3, 1, new Tanh()));
+        nn.addLayer(new FullyConnectedLayer(2, 2, new Sigmoid()));
+        nn.addLayer(new FullyConnectedLayer(2, 1, new Tanh()));
 
         // get result
         Dataset data = new Dataset();
@@ -22,7 +22,7 @@ public class Main {
         nn.train(data, 100000, 0.2);
 
         // predict
-        Vector input = Vector.fromArray(new double[]{1,0});
+        Vector input = Vector.fromArray(new double[]{0,1});
         System.out.println("Prediction: " + nn.feedForward(input));
     }
 

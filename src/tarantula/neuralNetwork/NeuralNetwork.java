@@ -22,7 +22,7 @@ public class NeuralNetwork {
         this.layers.add(layer);
     }
 
-    public Matrix feedForward(Matrix input) {
+    public Matrix predict(Matrix input) {
         for(Layer l : this.layers) {
             input = l.feedForward(input);
         }
@@ -63,6 +63,19 @@ public class NeuralNetwork {
 
             }
         }
+    }
+
+    public double meanSquaredError(Dataset t) {
+        double sum = 0;
+        ArrayList<Pair> data = t.getPairs();
+        for(Pair p : data) {
+            Vector x = p.getXVector();
+            Vector y = p.getYVector();
+            Matrix prediction = this.predict(x);
+            Matrix errors = Matrix.subtract(y, prediction);
+            sum += errors.sumOfSquares();
+        }
+        return sum / t.size();
     }
 
     @Override

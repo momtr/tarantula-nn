@@ -3,8 +3,10 @@ package tarantula.data;
 import tarantula.matrices.Matrix;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class Dataset {
 
@@ -86,6 +88,28 @@ public class Dataset {
         Matrix m = input.clone();
         m.multiply(this.maxValue);
         return m;
+    }
+
+    public void shuffleData() {
+        Collections.shuffle(this.data);
+    }
+
+    public int size() {
+        return this.data.size();
+    }
+
+    public List<Dataset> trainValidationTest(float train, float validation) {
+        List<Dataset> datasets = new ArrayList<Dataset>();
+        datasets.add(new Dataset()); // train
+        datasets.add(new Dataset()); // validation
+        datasets.add(new Dataset()); // test
+        for(Pair p : data) {
+            double num = Math.random();
+            if(num < train)             datasets.get(0).addPair(p);
+            else if(num < validation)   datasets.get(1).addPair(p);
+            else                        datasets.get(2).addPair(p);
+        }
+        return datasets;
     }
 
 }

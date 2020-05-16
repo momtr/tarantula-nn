@@ -1,5 +1,5 @@
 
-<img src="https://github.com/moritzmitterdorfer/TarantulaNN/blob/master/imgs/logo.svg">
+<img src="https://github.com/moritzmitterdorfer/TarantulaNN/blob/master/imgs/logo.png">
 
 # TarantulaNN
 🕷🕸 Implementation of a Deep Neural Network with flexibles architectures and activation functions

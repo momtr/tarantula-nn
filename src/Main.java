@@ -19,9 +19,9 @@ public class Main {
         data.addExample(new double[]{1,1}, new double[]{0});
         data.addExample(new double[]{0,0}, new double[]{0});
         data.addExample(new double[]{1,0}, new double[]{1});
-        data.addExample(new double[]{1,1}, new double[]{1});
+        data.addExample(new double[]{0,1}, new double[]{1});
 
-        // train model (stochastic gradient descnet)
+        // train model (stochastic gradient descent)
         nn.trainSGD(data, 10000, 0.2);
 
         // predict

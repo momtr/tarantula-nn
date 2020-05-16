@@ -1,3 +1,6 @@
+
+<img src="https://github.com/moritzmitterdorfer/TarantulaNN/blob/master/imgs/logo.svg">
+
 # TarantulaNN
 🕷🕸 Implementation of a Deep Neural Network with flexibles architectures and activation functions
 

@@ -8,6 +8,7 @@ import tarantula.neuralNetwork.NeuralNetwork;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+
         // build network
         NeuralNetwork nn = new NeuralNetwork();
         nn.addLayer(new FullyConnectedLayer(2, 2, new Sigmoid()));
@@ -23,7 +24,8 @@ public class Main {
 
         // predict
         Vector input = Vector.fromArray(new double[]{0,1});
-        System.out.println("Prediction: " + nn.feedForward(input));
+        System.out.println("Prediction: " + nn.predict(input));
+
     }
 
 }

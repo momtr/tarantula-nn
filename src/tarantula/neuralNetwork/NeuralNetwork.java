@@ -78,27 +78,31 @@ public class NeuralNetwork {
 
                 for(int j = i; j < (batchSize + i); j++) {
 
-                    Vector x = data.getPairs().get(j).getXVector();
-                    Vector y = data.getPairs().get(j).getYVector();
+                    if(j < data.size()) {
 
-                    // (1) calc the error and the history
-                    ArrayList<Matrix> history = this.feedForwardWithHistory(x);
-                    Matrix modelY = history.get(history.size() - 1);
-                    Matrix error = Matrix.subtract(y, modelY);
+                        Vector x = data.getPairs().get(j).getXVector();
+                        Vector y = data.getPairs().get(j).getYVector();
 
-                    // (2) calc the gradients for each layer and add them to the lists
-                    for(int k = this.layers.size() - 1; k >= 0; k--) {
-                        Matrix gradients = this.layers.get(k).calcGradient(error, history.get(k + 1), lr);
-                        Matrix weightGrads = this.layers.get(k).calcWeightGradient(gradients, history.get(k));
-                        error = this.layers.get(k).backprop(error);
-                        if(j == i) {
-                            weightGradients.add(weightGrads);
-                            biasGradients.add(gradients);
-                        } else {
-                            int index = this.layers.size() - 1 - k;
-                            weightGradients.get(index).add(weightGrads);
-                            biasGradients.get(index).add(gradients);
+                        // (1) calc the error and the history
+                        ArrayList<Matrix> history = this.feedForwardWithHistory(x);
+                        Matrix modelY = history.get(history.size() - 1);
+                        Matrix error = Matrix.subtract(y, modelY);
+
+                        // (2) calc the gradients for each layer and add them to the lists
+                        for (int k = this.layers.size() - 1; k >= 0; k--) {
+                            Matrix gradients = this.layers.get(k).calcGradient(error, history.get(k + 1), lr);
+                            Matrix weightGrads = this.layers.get(k).calcWeightGradient(gradients, history.get(k));
+                            error = this.layers.get(k).backprop(error);
+                            if (j == i) {
+                                weightGradients.add(weightGrads);
+                                biasGradients.add(gradients);
+                            } else {
+                                int index = this.layers.size() - 1 - k;
+                                weightGradients.get(index).add(weightGrads);
+                                biasGradients.get(index).add(gradients);
+                            }
                         }
+
                     }
 
                 }

@@ -21,22 +21,44 @@ public class FullyConnectedLayer extends Layer {
     @Override
     public Matrix train(Matrix error, Matrix input, Matrix output, double learningRate) {
 
-        // (1) calc the gradient * lr
+        Matrix gradient = this.calcGradient(error, output, learningRate);
+        Matrix weight_gradient = this.calcWeightGradient(gradient, input);
+        this.updateWeights(weight_gradient);
+        this.updateBiases(gradient);
+        return this.backprop(error);
+
+    }
+
+    @Override
+    public Matrix calcGradient(Matrix error, Matrix output, double learningRate) {
         Matrix gradients = output.clone();
         gradients.mapDerivative(super.getActivationFunction());
         gradients = Matrix.multiplyDirectional(gradients, error);
         gradients.multiply(2 * learningRate);
-        Matrix input_t = Matrix.transpose(input);
-        Matrix weight_deltas = Matrix.multiply(gradients, input_t);
-
-        // (2) update weights and biases
-        super.getWeights().add(weight_deltas);
-        super.getBiases().add(gradients);
-        Matrix weights_t = Matrix.transpose(super.getWeights());
-
-        // (3) return the new error
-        return Matrix.multiply(weights_t, error);
-
+        return gradients;
     }
+
+    @Override
+    public Matrix calcWeightGradient(Matrix gradient, Matrix input) {
+        Matrix input_t = Matrix.transpose(input);
+        return Matrix.multiply(gradient, input_t);
+    }
+
+    @Override
+    public void updateWeights(Matrix gradient) {
+        super.getWeights().add(gradient);
+    }
+
+    @Override
+    public void updateBiases(Matrix biases) {
+        super.getBiases().add(biases);
+    }
+
+    @Override
+    public Matrix backprop(Matrix error) {
+        Matrix weights_t = Matrix.transpose(super.getWeights());
+        return Matrix.multiply(weights_t, error);
+    }
+
 
 }

@@ -44,5 +44,10 @@ public abstract class Layer {
 
     public abstract Matrix feedForward(Matrix input);
     public abstract Matrix train(Matrix error, Matrix input, Matrix output, double learningRate);
+    public abstract Matrix calcGradient(Matrix error, Matrix output, double learningRate);
+    public abstract Matrix calcWeightGradient(Matrix gradient, Matrix input);
+    public abstract void updateWeights(Matrix gradient);
+    public abstract void updateBiases(Matrix biases);
+    public abstract Matrix backprop(Matrix error);
 
 }

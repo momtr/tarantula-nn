@@ -112,4 +112,13 @@ public class Dataset {
         return datasets;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for(Pair p : this.data) {
+            sb.append("\n").append("x: ").append(p.getXVector().toString()).append("y: ").append(p.getYVector().toString());
+        }
+        return sb.toString();
+    }
+
 }

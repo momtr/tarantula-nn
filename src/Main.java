@@ -16,14 +16,16 @@ public class Main {
 
         // get result
         Dataset data = new Dataset();
-        data.addExample(new double[]{1,0}, new double[]{1});
-        data.addExample(new double[]{0,1}, new double[]{1});
         data.addExample(new double[]{1,1}, new double[]{0});
         data.addExample(new double[]{0,0}, new double[]{0});
-        nn.train(data, 100000, 0.2);
+        data.addExample(new double[]{1,0}, new double[]{1});
+        data.addExample(new double[]{0,1}, new double[]{1});
+
+        // train model (mini-batch gradient descnet)
+        nn.trainMBGD(data, 2, 10000, 0.2);
 
         // predict
-        Vector input = Vector.fromArray(new double[]{0,1});
+        Vector input = Vector.fromArray(new double[]{1,0});
         System.out.println("Prediction: " + nn.predict(input));
 
     }

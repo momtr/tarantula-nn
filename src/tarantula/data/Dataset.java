@@ -4,7 +4,6 @@ import tarantula.matrices.Matrix;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -73,8 +72,8 @@ public class Dataset {
     }
 
     public void normalizeData() {
-        for(Pair p : this.data) {
-            p.normalize(this.maxValue);
+        for(int i = 0; i < this.size(); i++) {
+            this.data.get(i).normalize(this.maxValue);
         }
     }
 

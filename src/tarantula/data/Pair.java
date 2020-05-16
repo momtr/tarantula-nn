@@ -31,12 +31,14 @@ public class Pair {
     }
 
     public void normalize(double val) {
-        for(int i = 0; i < this.x.size() -1; i++) {
-            this.x.set(i, this.x.get(i) / val);
-        }
-        for(int i = 0; i < this.y.size() -1; i++) {
-            this.y.set(i, this.y.get(i) / val);
-        }
+        ArrayList<Double> newX = new ArrayList<Double>();
+        ArrayList<Double> newY = new ArrayList<Double>();
+        for(double i : this.x)
+            newX.add(i / val);
+        for(double i : this.y)
+            newY.add(i / val);
+        this.x = newX;
+        this.y = newY;
     }
 
 }

@@ -12,7 +12,7 @@ Layers:
 
 Activation functions:
 
-- ReLU
+- ReLU (*, Rectified Linear Unit)
 - Sigmoid
 - Tanh
 

@@ -4,6 +4,8 @@
 # TarantulaNN
 🕷🕸 Implementation of a Deep Neural Network with flexibles architectures and activation functions
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 <br>
 
 Layers:

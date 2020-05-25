@@ -8,25 +8,26 @@
 
 <br>
 
-Layers:
+## Layers:
 
 - FullyConnectedLayer
 
-Activation functions:
+## Activation functions:
 
 - ReLU (*, Rectified Linear Unit)
 - Sigmoid
 - Tanh
 
-Training:
+## Training:
 
 - mini-batch gradient descent
 - stochastic gradient descent
 
-Cost function:
+## Cost function:
 
 - Sum of squares
 
-
+## License
+This project is licensed under the terms of the MIT license, see LICENSE.
 
 

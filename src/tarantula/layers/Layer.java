@@ -48,6 +48,6 @@ public abstract class Layer {
     public abstract Matrix calcWeightGradient(Matrix gradient, Matrix input);
     public abstract void updateWeights(Matrix gradient);
     public abstract void updateBiases(Matrix biases);
-    public abstract Matrix backprop(Matrix error);
+    public abstract Matrix backprop(Matrix error, Matrix output);
 
 }

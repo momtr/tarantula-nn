@@ -92,7 +92,7 @@ public class NeuralNetwork {
                         for (int k = this.layers.size() - 1; k >= 0; k--) {
                             Matrix gradients = this.layers.get(k).calcGradient(error, history.get(k + 1), lr);
                             Matrix weightGrads = this.layers.get(k).calcWeightGradient(gradients, history.get(k));
-                            error = this.layers.get(k).backprop(error);
+                            error = this.layers.get(k).backprop(error, history.get(k));
                             if (j == i) {
                                 weightGradients.add(weightGrads);
                                 biasGradients.add(gradients);
